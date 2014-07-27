@@ -8,9 +8,20 @@ class Convertissage:
         self.output_type = output_type
         self.input_type = input_type
 
+    @property
+    def comment(self):
+        if str(self.base_value) == str(self.value):
+            return 'c\'est pareil !'
+
     def get_line(self):
-        return '{} {} ca fait {} {}'.format(self.base_value, self.input_type,
-                                            self.value, self.output_type)
+        comment = self.comment
+        if not comment:
+            comment = ''
+        else:
+            comment = '({})'.format(comment)
+        return '{} {} ca fait {} {} {}'.format(self.base_value, self.input_type,
+                                               self.value, self.output_type,
+                                               comment)
 
 
 class Convertisseur:
@@ -71,6 +82,7 @@ class Convertisseur:
     def integer_get_results(self):
         value = self.clean_value
 
+        # FIXME add other base conversions
         return [
             self._result(hex(value), 'en hexadecimal', 'en base 10'),
         ]
@@ -82,10 +94,13 @@ class Convertisseur:
     def number_get_results(self):
         value = self.clean_value
 
+        # FIXME: add all octets conversions
+        # FIXME: add all weight conversions
         results = [
             self._result(value * 1000, 'g', 'kg'),
             self._result(float(value) / 1000, 'kg', 'g'),
             self._result(value / 1024, 'octets', 'kilo-octets environ'),
+            self._result(value, 'kilo de plomb', 'kilo de plumes')
         ]
         if isinstance(value, int):
             results += self.integer_get_results()

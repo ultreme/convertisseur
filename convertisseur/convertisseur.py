@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 
-import random
+
+class Convertissage:
+    def __init__(self, value, output_type, input_type=None):
+        self.value = value
+        self.output_type = output_type
+        self.input_type = input_type
+
 
 class Convertisseur:
     def __init__(self, input_value):
@@ -58,7 +64,7 @@ class Convertisseur:
         value = self.clean_value
 
         return [
-            {'in': 'en base 10', 'out': 'en hexadecimal', 'value': hex(value)}
+            Convertissage(hex(value), 'en hexadecimal', 'en base 10'),
         ]
 
 
@@ -69,9 +75,9 @@ class Convertisseur:
         value = self.clean_value
 
         results = [
-            {'in': 'kg', 'out': 'g', 'value': value * 1000},
-            {'in': 'g', 'out': 'kg', 'value': value / 1000},
-            {'in': 'octets', 'out': 'kilo-octets', 'value': value / 1024 },
+            Convertissage(value * 1000, 'g', 'kg'),
+            Convertissage(value / 1000, 'kg', 'g'),
+            Convertissage(value / 1024, 'octets', 'kilo-octets'),
         ]
         if isinstance(value, int):
             results += self.integer_get_results()
@@ -82,8 +88,8 @@ class Convertisseur:
     def string_get_results(self):
         value = self.clean_value
         return [
-            {'out': 'caracteres de long', 'value': len(value)},
-            {'out': 'en verlant', 'value': value[::-1]},
+            Convertissage(len(value), 'caracteres'),
+            Convertissage(value[::-1], 'en verlant'),
         ]
 
     def common_get_results(self):

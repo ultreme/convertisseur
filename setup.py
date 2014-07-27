@@ -36,5 +36,9 @@ setup(
         'Topic :: Internet',
     ],
     extras_require={},
-    entry_points={},
+    entry_points={
+        'console_scripts': [
+            'convertisseur-cli = convertisseur.bin:convertisseur_cli',
+        ],
+    },
 )

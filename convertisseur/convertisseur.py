@@ -14,6 +14,9 @@ class Convertissage:
             return 'c\'est pareil !'
 
     def get_line(self):
+        input_type = self.input_type
+        if not input_type:
+            input_type = ''
         comment = self.comment
         if not comment:
             comment = ''
@@ -63,6 +66,12 @@ class Convertisseur:
             else:
                 infos.append('nul')
 
+            special_numbers = {
+                '42': 'la grande reponse a la vie, l\'univers et tout le reste',
+            }
+            if str(value) in special_numbers:
+                infos.append(special_numbers[str(value)])
+
             if isinstance(value, int):
                 infos.append('sans virgule')
             elif isinstance(value, float):
@@ -74,6 +83,16 @@ class Convertisseur:
                 infos.append('une phrase contenant des mots')
             else:
                 infos.append('un mot')
+
+            cleaned_value = value.lower().strip().replace('.', '')
+
+            special_words = {
+                'camembert au lait crew': 'le nom d\'un groupe de copains qui '
+                'font de la musique tres super',
+                'calc': 'les initials de camembert au lait crew',
+            }
+            if cleaned_value in special_words:
+                infos.append(special_words[cleaned_value])
         else:
             raise NotImplementedError()
 
@@ -86,7 +105,6 @@ class Convertisseur:
         return [
             self._result(hex(value), 'en hexadecimal', 'en base 10'),
         ]
-
 
     def float_get_results(self):
         return []

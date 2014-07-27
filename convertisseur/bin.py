@@ -24,7 +24,7 @@ def convertisseur_cli():
     print('Results')
     print('-------')
     for result in convertisseur.get_results():
-        print('- {}'.format(result))
+        print('- {}'.format(result.get_line()))
 
 
 if __name__ == '__main__':

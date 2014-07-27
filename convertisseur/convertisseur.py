@@ -2,10 +2,15 @@
 
 
 class Convertissage:
-    def __init__(self, value, output_type, input_type=None):
+    def __init__(self, base_value, value, output_type, input_type=None):
+        self.base_value = base_value
         self.value = value
         self.output_type = output_type
         self.input_type = input_type
+
+    def get_line(self):
+        return '{} {} ca fait {} {}'.format(self.base_value, self.input_type,
+                                            self.value, self.output_type)
 
 
 class Convertisseur:
@@ -19,6 +24,9 @@ class Convertisseur:
             return 'number'
         except:
             return 'string'
+
+    def _result(self, value, output_type, input_type=None):
+        return Convertissage(self.input_value, value, output_type, input_type)
 
     @property
     def clean_value(self):
@@ -64,7 +72,7 @@ class Convertisseur:
         value = self.clean_value
 
         return [
-            Convertissage(hex(value), 'en hexadecimal', 'en base 10'),
+            self._result(hex(value), 'en hexadecimal', 'en base 10'),
         ]
 
 
@@ -75,9 +83,9 @@ class Convertisseur:
         value = self.clean_value
 
         results = [
-            Convertissage(value * 1000, 'g', 'kg'),
-            Convertissage(value / 1000, 'kg', 'g'),
-            Convertissage(value / 1024, 'octets', 'kilo-octets'),
+            self._result(value * 1000, 'g', 'kg'),
+            self._result(float(value) / 1000, 'kg', 'g'),
+            self._result(value / 1024, 'octets', 'kilo-octets environ'),
         ]
         if isinstance(value, int):
             results += self.integer_get_results()
@@ -88,8 +96,8 @@ class Convertisseur:
     def string_get_results(self):
         value = self.clean_value
         return [
-            Convertissage(len(value), 'caracteres'),
-            Convertissage(value[::-1], 'en verlant'),
+            self._result(len(value), 'caracteres'),
+            self._result(value[::-1], 'en verlant'),
         ]
 
     def common_get_results(self):

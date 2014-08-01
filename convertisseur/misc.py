@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import base64
+
 
 def replace_string_with_mapping(string, mapping):
     for k, v in mapping.items():
@@ -48,6 +50,18 @@ def conv_langage_sms(string):
         'rt ': 'r ',
         'lait': 'lai',
     })
+
+
+def conv_rot13(string):
+    mapping = {}
+    base = 'abcdefghijklmnopqrstuvwxyz'
+    for i in xrange(len(base)):
+        mapping[base[i]] = '{}{}'.format(base, base)[i + 13]
+    return replace_string_with_mapping(string, mapping)
+
+
+def conv_base64(string):
+    return base64.b64encode(string)
 
 
 # braille

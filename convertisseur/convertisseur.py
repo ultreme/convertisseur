@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
-from .misc import conv_1337, conv_sms_grand_pere, conv_langage_sms
+from .misc import (
+    conv_1337, conv_sms_grand_pere, conv_langage_sms, conv_rot13, conv_base64,
+)
 
 
 class Convertissage:
@@ -137,6 +139,8 @@ class Convertisseur:
             self._result(conv_1337(value), 'en 1337'),
             self._result(conv_sms_grand_pere(value), 'en sms de grand pere'),
             self._result(conv_langage_sms(value), 'en langage sms'),
+            self._result(conv_base64(value), 'en base64'),
+            self._result(conv_rot13(value), 'en rot13'),
         ]
 
     def common_get_results(self):

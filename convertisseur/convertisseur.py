@@ -131,6 +131,7 @@ class Convertisseur:
         return [
             self._result(len(value), 'caracteres'),
             self._result(value[::-1], 'en verlant'),
+            self._result(value[::2], 'un caractere sur deux'),
         ]
 
     def common_get_results(self):

@@ -4,9 +4,17 @@ import base64
 
 
 def replace_string_with_mapping(string, mapping):
-    for k, v in mapping.items():
-        string = string.replace(k, str(v))
-    return string
+    output = ''
+    for i in xrange(len(string)):
+        found = False
+        for k, v in mapping.items():
+            if string[i:i + len(k)] == k:
+                found = True
+                output += str(v)
+                break
+        if not found:
+            output += string[i]
+    return output
 
 
 def conv_1337(string):
@@ -64,6 +72,47 @@ def conv_base64(string):
     return base64.b64encode(string)
 
 
+def conv_pronounced_letters(string):
+    mapping = {
+        'a': 'ha',
+        'b': 'bay',
+        'c': 'say',
+        'd': 'day',
+        'e': 'euh',
+        'f': 'ayf',
+        'g': 'jay',
+        'h': 'ach',
+        'i': 'hi',
+        'j': 'ji',
+        'k': 'ka',
+        'l': 'ail',
+        'm': 'aim',
+        'n': 'ain',
+        'o': 'ho',
+        'p': 'pay',
+        'q': 'ku',
+        'r': 'air',
+        's': 'aisse',
+        't': 'tay',
+        'u': 'hu',
+        'v': 'vay',
+        'x': 'ix',
+        'y': 'igrek',
+        'z': 'zayd',
+        '1': 'un',
+        '2': 'deu',
+        '3': 'troa',
+        '4': 'katr',
+        '5': 'sunk',
+        '6': 'cice',
+        '7': 'cete',
+        '8': 'uite',
+        '9': 'neuf',
+    }
+    return replace_string_with_mapping(string, mapping)
+
+
+# lettre militaire
 # braille
 # morse
 # markhov

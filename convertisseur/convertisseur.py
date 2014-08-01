@@ -2,6 +2,7 @@
 
 from .misc import (
     conv_1337, conv_sms_grand_pere, conv_langage_sms, conv_rot13, conv_base64,
+    conv_pronounced_letters,
 )
 
 
@@ -141,6 +142,8 @@ class Convertisseur:
             self._result(conv_langage_sms(value), 'en langage sms'),
             self._result(conv_base64(value), 'en base64'),
             self._result(conv_rot13(value), 'en rot13'),
+            self._result(conv_pronounced_letters(value),
+                         'en prononcant les caracteres'),
         ]
 
     def common_get_results(self):

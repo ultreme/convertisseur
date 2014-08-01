@@ -2,7 +2,7 @@
 
 from .misc import (
     conv_1337, conv_sms_grand_pere, conv_langage_sms, conv_rot13, conv_base64,
-    conv_pronounced_letters,
+    conv_pronounced_letters, conv_mega1337,
 )
 
 
@@ -138,6 +138,7 @@ class Convertisseur:
             self._result(value[::-1], 'en verlant'),
             self._result(value[::2], 'un caractere sur deux'),
             self._result(conv_1337(value), 'en 1337'),
+            self._result(conv_mega1337(value), 'en mega 1337 de la mort'),
             self._result(conv_sms_grand_pere(value), 'en sms de grand pere'),
             self._result(conv_langage_sms(value), 'en langage sms'),
             self._result(conv_base64(value), 'en base64'),

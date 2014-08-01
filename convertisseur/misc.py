@@ -28,6 +28,40 @@ def conv_1337(string):
         't': 7, 'T': 7,
         'b': 8, 'B': 8,
         'g': 9,
+        'o': 0, 'O': 0,
+    }
+    return replace_string_with_mapping(string, mapping)
+
+
+def conv_mega1337(string):
+    string = string.upper()
+    mapping = {
+        'A': 4,
+        'B': 8,
+        'C': '<',
+        'D': '|>',
+        'E': 3,
+        #'F':
+        'G': 6,
+        'H': '|-|',
+        'I': '|',
+        'J': '_|',
+        'K': '|<',
+        'L': '|_',
+        'M': '|v|',
+        'N': '|\\|',
+        'O': 0,
+        #'P':
+        'Q': 'O,',
+        #'R':
+        'S': 5,
+        'T': 7,
+        #'U':
+        'V': '\\/',
+        'W': '\\/\\/',
+        'X': '><',
+        #'Y':
+        'Z': 2,
     }
     return replace_string_with_mapping(string, mapping)
 

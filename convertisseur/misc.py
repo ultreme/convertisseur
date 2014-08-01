@@ -29,3 +29,28 @@ def conv_sms_grand_pere(string):
     })
     string = string.upper()
     return string
+
+
+def conv_langage_sms(string):
+    return replace_string_with_mapping(string, {
+        'salut': 'slt',
+        'bonjour': 'bjr',
+        'ca va': 'sava',
+        'comment vas-tu ?': 'sava?',
+        'coucou': 'cc',
+        'huitre': '8r',
+        'saucisson': 'so6on',
+        'trois': 3, 'troi': 3, 'troa': 3,
+        'eaux': 'o', 'aux': 'o', 'eau': 'o', 'au': 'o',
+        'eux': 'e', 'eu': 'e',
+        're ': 'r ',
+        'est': 'e',
+        'rt ': 'r ',
+        'lait': 'lai',
+    })
+
+
+# braille
+# morse
+# markhov
+# translage bot

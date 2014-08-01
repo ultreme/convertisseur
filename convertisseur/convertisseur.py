@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from .misc import conv_1337, conv_sms_grand_pere
+from .misc import conv_1337, conv_sms_grand_pere, conv_langage_sms
 
 
 class Convertissage:
@@ -136,6 +136,7 @@ class Convertisseur:
             self._result(value[::2], 'un caractere sur deux'),
             self._result(conv_1337(value), 'en 1337'),
             self._result(conv_sms_grand_pere(value), 'en sms de grand pere'),
+            self._result(conv_langage_sms(value), 'en langage sms'),
         ]
 
     def common_get_results(self):

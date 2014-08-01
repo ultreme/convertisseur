@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from .misc import conv_1337, conv_sms_grand_pere
+
 
 class Convertissage:
     def __init__(self, base_value, value, output_type, input_type=None):
@@ -132,6 +134,8 @@ class Convertisseur:
             self._result(len(value), 'caracteres'),
             self._result(value[::-1], 'en verlant'),
             self._result(value[::2], 'un caractere sur deux'),
+            self._result(conv_1337(value), 'en 1337'),
+            self._result(conv_sms_grand_pere(value), 'en sms de grand pere'),
         ]
 
     def common_get_results(self):

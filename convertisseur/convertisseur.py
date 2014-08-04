@@ -120,7 +120,8 @@ class Convertisseur:
             self._result(value * 1000, 'g', 'kg'),
             self._result(float(value) / 1000, 'kg', 'g'),
             self._result(value / 1024, 'octets', 'kilo-octets environ'),
-            self._result(value, 'kilo de plomb', 'kilo de plumes')
+            self._result(value, 'kg de plomb', 'kg de plumes'),
+            self._result(value + 2, 'carottes (ah non enfaite)', 'patates'),
         ]
         if isinstance(value, int):
             results += self.integer_get_results()

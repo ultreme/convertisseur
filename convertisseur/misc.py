@@ -5,15 +5,19 @@ import base64
 
 def replace_string_with_mapping(string, mapping):
     output = ''
-    for i in xrange(len(string)):
+    i = 0
+    i_max = len(string)
+    while i < i_max:
         found = False
         for k, v in mapping.items():
             if string[i:i + len(k)] == k:
                 found = True
                 output += str(v)
+                i += len(k) - 1
                 break
         if not found:
             output += string[i]
+        i += 1
     return output
 
 

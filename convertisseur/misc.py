@@ -80,22 +80,36 @@ def conv_sms_grand_pere(string):
 
 
 def conv_langage_sms(string):
-    return replace_string_with_mapping(string, {
+    words = {
         'salut': 'slt',
         'bonjour': 'bjr',
-        'ca va': 'sava',
-        'comment vas-tu ?': 'sava?',
         'coucou': 'cc',
+        'michel': 'michL',
         'huitre': '8r',
         'saucisson': 'so6on',
         'trois': 3, 'troi': 3, 'troa': 3,
+        #'lait': 'lai',
+    }
+    phrases = {
+        'je t\'aime': 'jtm',
+        'je rigole': 'lol',
+        'c\'est rigolo': 'lol',
+        'mort de rire': 'mdr',
+        'ca va?': 'sava?',
+        'comment vas-tu ?': 'sava?',
+    }
+    word_ends = {
         'eaux': 'o', 'aux': 'o', 'eau': 'o', 'au': 'o',
         'eux': 'e', 'eu': 'e',
-        're ': 'r ',
-        'est': 'e',
-        'rt ': 'r ',
-        'lait': 'lai',
-    })
+        #'re ': 'r ',
+        #'est': 'e',
+        #'rt ': 'r ',
+    }
+    string = replace_string_with_mapping(string, phrases)
+    string = replace_string_with_mapping(string, words)
+    string = replace_string_with_mapping(string, word_ends)
+    # FIXME: better handling of type of replacement (word_ends for instance)
+    return string
 
 
 def conv_rot13(string):

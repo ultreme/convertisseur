@@ -110,6 +110,10 @@ def conv_base64(string):
     return base64.b64encode(string)
 
 
+def get_latest_word(string):
+    return re.sub('[^a-z]', ' ', string).strip().split(' ')[-1]
+
+
 def conv_pronounced_letters(string):
     mapping = {
         'a': 'ha',

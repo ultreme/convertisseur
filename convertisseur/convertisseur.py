@@ -19,17 +19,14 @@ class Convertissage:
             return 'c\'est pareil !'
 
     def get_line(self):
-        input_type = self.input_type
-        if not input_type:
-            input_type = ''
         comment = self.comment
-        if not comment:
-            comment = ''
-        else:
+        if comment:
             comment = '({})'.format(comment)
-        return '{} {} ca fait {} {} {}'.format(self.base_value, input_type,
-                                               self.value, self.output_type,
-                                               comment)
+        parts = [
+            self.base_value, self.input_type, 'ca fait', self.value,
+            self.output_type, comment
+        ]
+        return ' '.join([str(part) for part in parts if part])
 
 
 class Convertisseur:

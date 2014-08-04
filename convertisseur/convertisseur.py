@@ -2,7 +2,7 @@
 
 from .misc import (
     conv_1337, conv_sms_grand_pere, conv_langage_sms, conv_rot13, conv_base64,
-    conv_pronounced_letters, conv_mega1337,
+    conv_pronounced_letters, conv_mega1337, conv_verlant,
 )
 
 
@@ -132,7 +132,7 @@ class Convertisseur:
         value = self.clean_value
         return [
             self._result(len(value), 'caracteres'),
-            self._result(value[::-1], 'en verlant'),
+            self._result(value[::-1], 'a l\'envers'),
             self._result(value[::2], 'un caractere sur deux'),
             self._result(conv_1337(value), 'en 1337'),
             self._result(conv_mega1337(value), 'en mega 1337 de la mort'),
@@ -142,6 +142,8 @@ class Convertisseur:
             self._result(conv_rot13(value), 'en rot13'),
             self._result(conv_pronounced_letters(value),
                          'en prononcant les caracteres'),
+            self._result(conv_verlant(value),
+                         'en verlant (je suis pas tres fort)'),
         ]
 
     def common_get_results(self):

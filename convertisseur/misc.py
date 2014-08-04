@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import base64
+import re
 
 
 def replace_string_with_mapping(string, mapping):
@@ -133,6 +134,35 @@ def get_words(string):
         word.strip()
         for word in re.sub('[^a-z]', ' ', string).strip().split(' ')
     ]
+
+
+def get_syllabes(word):
+    len_ = len(word)
+    i = 0
+    syllabes = []
+    begin = 0
+    voyel_sounds = ['on', 'ou', 'a', 'e', 'i', 'o', 'u', 'y',]
+    while i < len_:
+        for voyel_sound in voyel_sounds:
+            if word[i:i+len(voyel_sound)] == voyel_sound:
+                syllabes.append(word[begin:i + len(voyel_sound)])
+                begin = i + len(voyel_sound)
+                i += begin - 1
+                break
+        i += 1
+    rest = word[begin:]
+    if len(rest):
+        syllabes.append(word[begin:])
+    return syllabes
+
+
+def conv_verlant(string):
+    words = []
+    for word in get_words(string):
+        syllabes = get_syllabes(word)
+        syllabes.reverse()
+        words.append(''.join(syllabes))
+    return ' '.join(words)
 
 
 def conv_pronounced_letters(string):

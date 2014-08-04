@@ -27,7 +27,7 @@ class Convertissage:
             comment = ''
         else:
             comment = '({})'.format(comment)
-        return '{} {} ca fait {} {} {}'.format(self.base_value, self.input_type,
+        return '{} {} ca fait {} {} {}'.format(self.base_value, input_type,
                                                self.value, self.output_type,
                                                comment)
 

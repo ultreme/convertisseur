@@ -125,7 +125,14 @@ def conv_base64(string):
 
 
 def get_latest_word(string):
-    return re.sub('[^a-z]', ' ', string).strip().split(' ')[-1]
+    return get_words(string)[-1]
+
+
+def get_words(string):
+    return [
+        word.strip()
+        for word in re.sub('[^a-z]', ' ', string).strip().split(' ')
+    ]
 
 
 def conv_pronounced_letters(string):

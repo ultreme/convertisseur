@@ -28,7 +28,7 @@ class Convertissage:
             self.base_value, self.input_type, 'ca fait', self.value,
             self.output_type, comment
         ]
-        return ' '.join([str(part) for part in parts if part])
+        return ' '.join([str(part) for part in parts if part is not None])
 
 
 class Convertisseur:

@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import math
+
 from .misc import (
     conv_1337, conv_sms_grand_pere, conv_langage_sms, conv_rot13, conv_base64,
     conv_pronounced_letters, conv_mega1337, conv_verlant,
@@ -70,7 +72,13 @@ class Convertisseur:
 
             special_numbers = {
                 '42': 'la grande reponse a la vie, l\'univers et tout le reste',
+                '4242': 'la grande reponse a la vie, l\'univers et tout le '
+                'reste, fois 2',
+                '1337': 'ca veut dire leet (elite) en langage gamer/hacker',
+                '31337': 'ca veut dire elite en langage gamer/hacker',
+                '3.1415': 'c\'est pi',
             }
+            special_numbers[str(math.pi)] = special_numbers.get('3.1415')
             if str(value) in special_numbers:
                 infos.append(special_numbers[str(value)])
 
@@ -119,9 +127,17 @@ class Convertisseur:
         results = [
             self._result(value * 1000, 'g', 'kg'),
             self._result(float(value) / 1000, 'kg', 'g'),
-            self._result(value / 1024, 'octets', 'kilo-octets environ'),
+            self._result(int(math.ceil(value / 1024)), 'kilo-octets environ',
+                         'octets'),
+            self._result(int(math.ceil(value / 1024 / 1024)),
+                         'mega-octets environ', 'octets'),
             self._result(value, 'kg de plomb', 'kg de plumes'),
-            self._result(value + 2, 'carottes (ah non enfaite)', 'patates'),
+            self._result(int(value * 1.6942), 'carottes (ah non enfaite)',
+                         'patates'),
+            self._result(value * value, 'au carre'),
+            self._result(value * value * math.pi, 'de surface de cercle',
+                         'de rayon'),
+            self._result(value * 4, 'de contour de carre', 'de cote')
         ]
         if isinstance(value, int):
             results += self.integer_get_results()

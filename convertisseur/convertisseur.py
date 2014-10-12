@@ -4,7 +4,7 @@ import math
 
 from .misc import (
     conv_1337, conv_sms_grand_pere, conv_langage_sms, conv_rot13, conv_base64,
-    conv_pronounced_letters, conv_mega1337, conv_verlant,
+    conv_pronounced_letters, conv_mega1337, conv_verlant, conv_javanais,
 )
 
 
@@ -161,6 +161,9 @@ class Convertisseur:
                          'en prononcant les caracteres'),
             self._result(conv_verlant(value),
                          'en verlant (je suis pas tres fort)'),
+            self._result(conv_javanais(value),
+                         'en javanais'),
+            # self._result(conv_poilau(value), 'en mode poil-au'),
         ]
 
     def common_get_results(self):

@@ -165,6 +165,27 @@ def conv_verlant(string):
     return ' '.join(words)
 
 
+def conv_poilau(string):
+    print('-' * 80)
+    word = get_latest_word(string)
+    print(word)
+    print('-' * 80)
+    return 4242
+
+
+def conv_javanais(string):
+    output = ''
+    mode = 'consonnant'
+    for i in xrange(len(string)):
+        if mode == 'consonnant' and string[i] in ('a', 'e', 'i', 'o', 'u', 'y'):
+            mode = 'vowel'
+            output += 'av'
+        elif mode == 'vowel':
+            mode = 'consonnant'
+        output += string[i]
+    return output
+
+
 def conv_pronounced_letters(string):
     mapping = {
         'a': 'ha',
@@ -210,3 +231,5 @@ def conv_pronounced_letters(string):
 # morse
 # markhov
 # translage bot
+# javanais, langue de feu etc
+# poil au

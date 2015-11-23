@@ -17,8 +17,14 @@ class Convertissage:
 
     @property
     def comment(self):
-        if str(self.base_value) == str(self.value):
+        if self.as_unicode(self.base_value) == self.as_unicode(self.value):
             return 'c\'est pareil !'
+
+    def as_unicode(self, what):
+        if type(what) == unicode:
+            return what
+        what_str = str(what)
+        return what_str.encode('utf8')
 
     def get_line(self):
         comment = self.comment
@@ -28,12 +34,12 @@ class Convertissage:
             self.base_value, self.input_type, 'ca fait', self.value,
             self.output_type, comment
         ]
-        return ' '.join([str(part) for part in parts if part is not None])
+        return ' '.join([self.as_unicode(part) for part in parts if part is not None]).encode('utf8')
 
 
 class Convertisseur:
     def __init__(self, input_value):
-        self.input_value = input_value
+        self.input_value = unicode(input_value, 'utf-8')
 
     @property
     def input_family(self):
@@ -53,7 +59,7 @@ class Convertisseur:
             if value == int(value):
                 return int(value)
             return value
-        return str(self.input_value)
+        return self.input_value
 
     def get_infos(self):
         value = self.clean_value

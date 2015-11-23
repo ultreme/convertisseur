@@ -122,7 +122,7 @@ def conv_rot13(string):
 
 
 def conv_base64(string):
-    return base64.b64encode(string)
+    return base64.b64encode(string.encode('utf8'))
 
 
 def get_latest_word(string):
